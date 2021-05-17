@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projetuto/model/album.dart';
+import 'createquestion_nbr.dart';
 
 class ProfileTeacher extends StatefulWidget {
   @override
@@ -28,7 +29,33 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
                 future: futureAlbum,
                 builder: (context, snapshot) {
                   return Column(
-                    children: [Text("Bonjour")],
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      ),
+                      Text("Bonjour",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 50,
+                              color: Colors.white)),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      ),
+                      ElevatedButton(
+                          child: Text("Créer un test"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            onPrimary: Colors.black,
+                          ),
+                          onPressed: () => {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Createquestionnbr(),
+                                  ),
+                                )
+                              })
+                    ],
                   );
                 })));
   }
