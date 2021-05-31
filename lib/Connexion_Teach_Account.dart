@@ -10,7 +10,7 @@ class TeacherAccount extends StatefulWidget {
 }
 
 class _TeacherAccountState extends State<TeacherAccount> {
-  Future<Album> futureAlbum;
+  // Future<Album> futureAlbum;
   final _formKey = GlobalKey<FormState>();
   TextEditingController logteacherController = new TextEditingController();
   TextEditingController mdpteacherController = new TextEditingController();
@@ -18,7 +18,7 @@ class _TeacherAccountState extends State<TeacherAccount> {
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    // futureAlbum = fetchAlbum();
   }
 
   @override
@@ -39,8 +39,7 @@ class _TeacherAccountState extends State<TeacherAccount> {
           ),
         ),
         body: Center(
-          child: FutureBuilder<Album>(
-            future: futureAlbum,
+          child: FutureBuilder<Data>(
             builder: (context, snapshot) {
               return Form(
                 key: _formKey,

@@ -14,6 +14,7 @@ class Question extends StatefulWidget {
 
 class _QuestionState extends State<Question> {
   Future<Album> futureAlbum;
+
   int selectedIndex;
 
   @override
@@ -48,7 +49,7 @@ class _QuestionState extends State<Question> {
                 return PageView.builder(
                   controller: _controller,
                   physics: new NeverScrollableScrollPhysics(),
-                  itemCount: snapshot.data.questions.length,
+                  itemCount: snapshot.data.data.session.questions.length,
                   itemBuilder: (context, inde) {
                     return Column(
                       children: [
@@ -75,8 +76,8 @@ class _QuestionState extends State<Question> {
                         Expanded(
                           child: Center(
                             child: Text(
-                              utf8.decode(snapshot
-                                  .data.questions[inde]["questionText"].runes
+                              utf8.decode(snapshot.data.data.session
+                                  .questions[inde]["questionText"].runes
                                   .toList()),
                               style: TextStyle(color: Colors.white),
                             ),
@@ -86,8 +87,8 @@ class _QuestionState extends State<Question> {
                           child: ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount:
-                                snapshot.data.questions[inde]["answers"].length,
+                            itemCount: snapshot.data.data.session
+                                .questions[inde]["answers"].length,
                             itemBuilder: (context, index) {
                               return Center(
                                 child: SizedBox(
@@ -96,6 +97,8 @@ class _QuestionState extends State<Question> {
                                     child: new Text(
                                       utf8.decode(snapshot
                                           .data
+                                          .data
+                                          .session
                                           .questions[inde]["answers"][index]
                                               ["text"]
                                           .runes
@@ -119,7 +122,9 @@ class _QuestionState extends State<Question> {
                           padding: const EdgeInsets.only(bottom: 100),
                           child: ElevatedButton(
                             onPressed: () {
-                              if (inde == snapshot.data.questions.length - 1) {
+                              if (inde ==
+                                  snapshot.data.data.session.questions.length -
+                                      1) {
                                 print("ok");
                               } else {
                                 setState(() {
