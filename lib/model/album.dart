@@ -5,12 +5,13 @@ import 'dart:async';
 
 Future<Album> fetchAlbum() async {
   final response = await http.get(Uri.http('localhost:8080', 'api/quiz/321'));
-
+  final jsonresponse = json.decode(response.body);
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    print(response.body);
-    return Album.fromJson(jsonDecode(response.body));
+    print(jsonresponse[0]);
+
+    return Album.fromJson(jsonresponse[0]);
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
@@ -19,29 +20,12 @@ Future<Album> fetchAlbum() async {
 }
 
 class Album {
-  Data data;
-
-  Album({@required this.data});
+  Session session;
+  Album({@required this.session});
 
   factory Album.fromJson(Map<String, dynamic> json) {
     return Album(
-      data: Data.fromJson(json["data"]),
-    );
-  }
-}
-
-class Data {
-  final String codeSession;
-  final String etudiant;
-  Session session;
-
-  Data({@required this.codeSession, this.session, this.etudiant});
-
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-      session: Session.fromJson(jsonDecode('session')),
-      codeSession: json['codeSession'],
-      etudiant: json["etudiant"],
+      session: Session.fromJson(jsonDecode(json['session'])),
     );
   }
 }

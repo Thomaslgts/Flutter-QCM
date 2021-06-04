@@ -49,7 +49,7 @@ class _QuestionState extends State<Question> {
                 return PageView.builder(
                   controller: _controller,
                   physics: new NeverScrollableScrollPhysics(),
-                  itemCount: snapshot.data.data.session.questions.length,
+                  itemCount: snapshot.data.session.questions.length,
                   itemBuilder: (context, inde) {
                     return Column(
                       children: [
@@ -76,9 +76,8 @@ class _QuestionState extends State<Question> {
                         Expanded(
                           child: Center(
                             child: Text(
-                              utf8.decode(snapshot.data.data.session
-                                  .questions[inde]["questionText"].runes
-                                  .toList()),
+                              snapshot.data.session.questions[inde]
+                                  ["questionText"],
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
@@ -87,22 +86,16 @@ class _QuestionState extends State<Question> {
                           child: ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: snapshot.data.data.session
-                                .questions[inde]["answers"].length,
+                            itemCount: snapshot
+                                .data.session.questions[inde]["answers"].length,
                             itemBuilder: (context, index) {
                               return Center(
                                 child: SizedBox(
                                   width: 250,
                                   child: new RaisedButton(
                                     child: new Text(
-                                      utf8.decode(snapshot
-                                          .data
-                                          .data
-                                          .session
-                                          .questions[inde]["answers"][index]
-                                              ["text"]
-                                          .runes
-                                          .toList()),
+                                      snapshot.data.session.questions[inde]
+                                          ["answers"][index]["text"],
                                     ),
                                     color: selectedIndex == index
                                         ? Colors.blue
@@ -123,8 +116,7 @@ class _QuestionState extends State<Question> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (inde ==
-                                  snapshot.data.data.session.questions.length -
-                                      1) {
+                                  snapshot.data.session.questions.length - 1) {
                                 print("ok");
                               } else {
                                 setState(() {

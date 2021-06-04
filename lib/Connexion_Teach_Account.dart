@@ -39,7 +39,7 @@ class _TeacherAccountState extends State<TeacherAccount> {
           ),
         ),
         body: Center(
-          child: FutureBuilder<Data>(
+          child: FutureBuilder<Album>(
             builder: (context, snapshot) {
               return Form(
                 key: _formKey,
