@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Center(
           child: FutureBuilder<Album>(
+            future: futureAlbum,
             builder: (context, snapshot) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -98,24 +99,29 @@ class _HomePageState extends State<HomePage> {
                         onPrimary: Colors.black,
                       ),
                       onPressed: () => {
-                        // if (codeController.text == snapshot.data.codeSession)
-                        //   {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => NamePage(),
-                          ),
-                        )
+                        setState(() {
+                          test = codeController.text;
+                          futureAlbum = fetchAlbum();
+                          print(test);
+                        }),
+                        if (codeController.text == snapshot.data.codeSession)
+                          {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NamePage(),
+                              ),
+                            )
+                          }
+                        else
+                          {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  _buildPopupDialog(context),
+                            )
+                          }
                       },
-                      //   else
-                      //     {
-                      //       showDialog(
-                      //         context: context,
-                      //         builder: (BuildContext context) =>
-                      //             _buildPopupDialog(context),
-                      //       )
-                      //     }
-                      // },
                       child: const Text(
                         "Accéder à l'examen",
                         style: TextStyle(fontSize: 20),
@@ -183,13 +189,13 @@ class NamePage extends StatefulWidget {
 }
 
 class _NamePageState extends State<NamePage> {
-  // Future<Album> futureAlbum;
+  Future<Album> futureAlbum;
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    // futureAlbum = fetchAlbum();
+    futureAlbum = fetchAlbum();
   }
 
   @override
@@ -211,6 +217,7 @@ class _NamePageState extends State<NamePage> {
         ),
         body: Center(
           child: FutureBuilder<Album>(
+            future: futureAlbum,
             builder: (context, snapshot) {
               return Form(
                 key: _formKey,

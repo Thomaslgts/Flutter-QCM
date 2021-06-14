@@ -27,6 +27,14 @@ class _CreatequestionState extends State<Createquestion> {
   int lenghtquestion;
   String endrequest;
   String request;
+  bool _checkbox1 = false;
+  bool _checkbox2 = false;
+  bool _checkbox3 = false;
+  bool _checkbox4 = false;
+  int _score1 = 0;
+  int _score2 = 0;
+  int _score3 = 0;
+  int _score4 = 0;
   _CreatequestionState(
       this.intnbrquestion, this.lenghtquestion, this.endrequest, this.request);
   @override
@@ -41,7 +49,7 @@ class _CreatequestionState extends State<Createquestion> {
             margin: const EdgeInsets.only(
               left: 40.0,
               right: 40.0,
-              top: 100,
+              top: 30,
             ),
             child: Column(children: [
               Text("Question Numéro " + lenghtquestion.toString(),
@@ -52,6 +60,7 @@ class _CreatequestionState extends State<Createquestion> {
               Text("Question",
                   style: TextStyle(color: Colors.white, fontSize: 30)),
               new TextField(
+                style: TextStyle(fontSize: 20),
                 controller: questionController,
                 decoration: new InputDecoration(
                   hintText: "Question",
@@ -62,30 +71,106 @@ class _CreatequestionState extends State<Createquestion> {
               ),
               Text("Réponse",
                   style: TextStyle(color: Colors.white, fontSize: 30)),
-              new TextField(
-                controller: answeroneController,
-                decoration: new InputDecoration(
-                  hintText: "Réponse 1",
-                ),
+              Text(
+                  "N'oublier pas de cocher la réponse qui est juste, attention une seule réponse peut être juste",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 20)),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               ),
-              new TextField(
-                controller: answertowController,
-                decoration: new InputDecoration(
-                  hintText: "Réponse 2",
+              Row(children: [
+                Checkbox(
+                    value: _checkbox1,
+                    onChanged: (value) {
+                      setState(() {
+                        _checkbox1 = true;
+                        _score1 = 2;
+                      });
+                    }),
+                SizedBox(
+                  width: 300,
+                  height: 20,
+                  child: new TextField(
+                    controller: answeroneController,
+                    style: TextStyle(fontSize: 20),
+                    decoration: new InputDecoration(
+                      hintText: "Réponse 1",
+                    ),
+                  ),
                 ),
+              ]),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               ),
-              new TextField(
-                controller: answerthreeController,
-                decoration: new InputDecoration(
-                  hintText: "Réponse 3",
+              Row(children: [
+                Checkbox(
+                    value: _checkbox2,
+                    onChanged: (value) {
+                      setState(() {
+                        _checkbox2 = true;
+                        _score2 = 2;
+                      });
+                    }),
+                SizedBox(
+                  width: 300,
+                  height: 20,
+                  child: new TextField(
+                    controller: answertowController,
+                    style: TextStyle(fontSize: 20),
+                    decoration: new InputDecoration(
+                      hintText: "Réponse 2",
+                    ),
+                  ),
                 ),
+              ]),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               ),
-              new TextField(
-                controller: answerfourController,
-                decoration: new InputDecoration(
-                  hintText: "Réponse 4",
+              Row(children: [
+                Checkbox(
+                    value: _checkbox3,
+                    onChanged: (value) {
+                      setState(() {
+                        _checkbox3 = true;
+                        _score3 = 2;
+                      });
+                    }),
+                SizedBox(
+                  width: 300,
+                  height: 20,
+                  child: new TextField(
+                    style: TextStyle(fontSize: 20),
+                    controller: answerthreeController,
+                    decoration: new InputDecoration(
+                      hintText: "Réponse 3",
+                    ),
+                  ),
                 ),
+              ]),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               ),
+              Row(children: [
+                Checkbox(
+                    value: _checkbox4,
+                    onChanged: (value) {
+                      setState(() {
+                        _checkbox4 = true;
+                        _score4 = 2;
+                      });
+                    }),
+                SizedBox(
+                  width: 300,
+                  height: 20,
+                  child: new TextField(
+                    style: TextStyle(fontSize: 20),
+                    controller: answerfourController,
+                    decoration: new InputDecoration(
+                      hintText: "Réponse 4",
+                    ),
+                  ),
+                )
+              ]),
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               ),
@@ -105,18 +190,34 @@ class _CreatequestionState extends State<Createquestion> {
                                 questionController.text +
                                 '","answers":[{"text":"' +
                                 answeroneController.text +
-                                '","score":0,"correct":false},' +
+                                '","score":' +
+                                _score1.toString() +
+                                ',"correct":false},' +
                                 '{"text":"' +
                                 answertowController.text +
-                                '","score":0,"correct":false},' +
+                                '","score":' +
+                                _score2.toString() +
+                                ',"correct":false},' +
                                 '{"text":"' +
                                 answerthreeController.text +
-                                '","score":0,"correct":false},' +
+                                '","score":' +
+                                _score3.toString() +
+                                ',"correct":false},' +
                                 '{"text":"' +
                                 answerfourController.text +
-                                '","score":0,"correct":false}]}' +
+                                '","score":' +
+                                _score4.toString() +
+                                ',"correct":false}]}' +
                                 endrequest,
                             print(request),
+                            _score1 = 0,
+                            _score2 = 0,
+                            _score3 = 0,
+                            _score4 = 0,
+                            _checkbox1 = false,
+                            _checkbox2 = false,
+                            _checkbox3 = false,
+                            _checkbox4 = false,
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -136,22 +237,39 @@ class _CreatequestionState extends State<Createquestion> {
                                 questionController.text +
                                 '","answers":[{"text":"' +
                                 answeroneController.text +
-                                '","score":0,"correct":false},' +
+                                '","score":' +
+                                _score1.toString() +
+                                ',"correct":false},' +
                                 '{"text":"' +
                                 answertowController.text +
-                                '","score":0,"correct":false},' +
+                                '","score":' +
+                                _score2.toString() +
+                                ',"correct":false},' +
                                 '{"text":"' +
                                 answerthreeController.text +
-                                '","score":0,"correct":false},' +
+                                '","score":' +
+                                _score3.toString() +
+                                ',"correct":false},' +
                                 '{"text":"' +
                                 answerfourController.text +
-                                '","score":0,"correct":false}]},',
+                                '","score":' +
+                                _score4.toString() +
+                                ',"correct":false}]},',
                             questionController.clear(),
                             answeroneController.clear(),
                             answertowController.clear(),
                             answerthreeController.clear(),
                             answerfourController.clear(),
                             _incrementCounter(),
+                            _score1 = 0,
+                            _score2 = 0,
+                            _score3 = 0,
+                            _score4 = 0,
+                            _checkbox1 = false,
+                            _checkbox2 = false,
+                            _checkbox3 = false,
+                            _checkbox4 = false,
+                            print(request)
                           }
                       })
             ])));
