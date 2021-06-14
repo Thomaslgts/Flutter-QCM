@@ -10,7 +10,7 @@ class TeacherAccount extends StatefulWidget {
 }
 
 class _TeacherAccountState extends State<TeacherAccount> {
-  // Future<Album> futureAlbum;
+  Future<Album> futureAlbum;
   final _formKey = GlobalKey<FormState>();
   TextEditingController logteacherController = new TextEditingController();
   TextEditingController mdpteacherController = new TextEditingController();
@@ -18,7 +18,7 @@ class _TeacherAccountState extends State<TeacherAccount> {
   @override
   void initState() {
     super.initState();
-    // futureAlbum = fetchAlbum();
+    futureAlbum = fetchAlbum();
   }
 
   @override
@@ -155,46 +155,46 @@ class _TeacherAccountState extends State<TeacherAccount> {
                           onPrimary: Colors.black,
                         ),
                         onPressed: () => {
-                          if (_formKey.currentState.validate() &&
-                              mdpteacherController.text ==
-                                  snapshot.data.session)
-                            {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ProfileTeacher(),
-                                ),
-                              )
-                            }
-                          else
-                            {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                        title: const Text(
-                                            'Oups petit problème ...'),
-                                        content: new Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text("Combinaison incorrect"),
-                                          ],
-                                        ),
-                                        actions: <Widget>[
-                                          new FlatButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            textColor:
-                                                Theme.of(context).primaryColor,
-                                            child: const Text('Fermer'),
-                                          ),
-                                        ],
-                                      ))
-                            }
+                          // if (_formKey.currentState.validate() &&
+                          //     mdpteacherController.text ==
+                          //         snapshot.data.codeSession)
+                          //   {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileTeacher(),
+                            ),
+                          )
                         },
+                        //   else
+                        //     {
+                        //       showDialog(
+                        //           context: context,
+                        //           builder: (BuildContext context) =>
+                        //               AlertDialog(
+                        //                 title: const Text(
+                        //                     'Oups petit problème ...'),
+                        //                 content: new Column(
+                        //                   mainAxisSize: MainAxisSize.min,
+                        //                   crossAxisAlignment:
+                        //                       CrossAxisAlignment.start,
+                        //                   children: <Widget>[
+                        //                     Text("Combinaison incorrect"),
+                        //                   ],
+                        //                 ),
+                        //                 actions: <Widget>[
+                        //                   new FlatButton(
+                        //                     onPressed: () {
+                        //                       Navigator.of(context).pop();
+                        //                     },
+                        //                     textColor:
+                        //                         Theme.of(context).primaryColor,
+                        //                     child: const Text('Fermer'),
+                        //                   ),
+                        //                 ],
+                        //               ))
+                        //     }
+                        // },
                         child: const Text(
                           "Connexion",
                           style: TextStyle(fontSize: 20),
@@ -212,24 +212,24 @@ class _TeacherAccountState extends State<TeacherAccount> {
   }
 }
 
-Widget _buildPopup(BuildContext context) {
-  return new AlertDialog(
-    title: const Text('Oups petit problème ...'),
-    content: new Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text("Combinaison login/mot de passe n'est pas la bonne"),
-      ],
-    ),
-    actions: <Widget>[
-      new FlatButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-        textColor: Theme.of(context).primaryColor,
-        child: const Text('Fermer'),
-      ),
-    ],
-  );
-}
+// Widget _buildPopup(BuildContext context) {
+//   return new AlertDialog(
+//     title: const Text('Oups petit problème ...'),
+//     content: new Column(
+//       mainAxisSize: MainAxisSize.min,
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: <Widget>[
+//         Text("Combinaison login/mot de passe n'est pas la bonne"),
+//       ],
+//     ),
+//     actions: <Widget>[
+//       new FlatButton(
+//         onPressed: () {
+//           Navigator.of(context).pop();
+//         },
+//         textColor: Theme.of(context).primaryColor,
+//         child: const Text('Fermer'),
+//       ),
+//     ],
+//   );
+// }
