@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 import 'package:projetuto/model/album.dart';
+import 'Result.dart';
 
 class Question extends StatefulWidget {
   Question({Key key}) : super(key: key);
@@ -16,6 +17,8 @@ class _QuestionState extends State<Question> {
   Future<Album> futureAlbum;
 
   int selectedIndex;
+  int Scored = 0;
+  int ScoredAllGood = 0;
 
   @override
   void initState() {
@@ -54,7 +57,7 @@ class _QuestionState extends State<Question> {
                     return Column(
                       children: [
                         Countdown(
-                          seconds: 5,
+                          seconds: 120,
                           build: (_, double time) => Text(
                             time.toString(),
                             style: TextStyle(
@@ -103,6 +106,11 @@ class _QuestionState extends State<Question> {
                                     onPressed: () {
                                       setState(() {
                                         selectedIndex = index;
+                                        Scored = Scored +
+                                            snapshot.data.session
+                                                    .questions[inde]["answers"]
+                                                [index]["score"];
+                                        print(Scored.toString());
                                       });
                                     },
                                   ),
@@ -118,10 +126,19 @@ class _QuestionState extends State<Question> {
                               if (inde ==
                                   snapshot.data.session.questions.length - 1) {
                                 print("ok");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ResultFinalQuizz(
+                                        Scored: Scored,
+                                        ScoredAllGood: ScoredAllGood),
+                                  ),
+                                );
                               } else {
                                 setState(() {
                                   selectedIndex = null;
                                 });
+                                ScoredAllGood = Scored + 2;
                                 _controller.nextPage(
                                     duration: Duration(milliseconds: 200),
                                     curve: Curves.easeIn);

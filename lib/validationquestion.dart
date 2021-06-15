@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'Account_Teacher.dart';
 
 class ValidateQuestionFinal extends StatefulWidget {
   String request;
@@ -42,7 +43,7 @@ class _ValidateQuestionFinalState extends State<ValidateQuestionFinal> {
   postTest() async {
     final uri = 'https://serveur-flutter.herokuapp.com/api/quiz';
     var requestBody = {
-      'codeSession': "2706",
+      'codeSession': "1708",
       'etudiant': "etudiant",
       'session': request,
     };
@@ -50,7 +51,13 @@ class _ValidateQuestionFinalState extends State<ValidateQuestionFinal> {
       Uri.parse(uri),
       body: requestBody,
     );
-
     print(response.body);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileTeacher(),
+      ),
+    );
   }
 }
