@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-var Scored;
+var test;
 
 Future<Album> fetchAlbum() async {
   final response = await http
-      .get(Uri.parse('https://serveur-flutter.herokuapp.com/api/quiz/1708'));
+      .get(Uri.parse('https://serveur-flutter.herokuapp.com/api/quiz/' + test));
   final jsonresponse = json.decode(response.body);
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
