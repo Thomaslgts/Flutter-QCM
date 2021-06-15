@@ -22,7 +22,7 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
       backgroundColor: Colors.blue[900],
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
-        title: Text('Espace professeur'),
+        title: Text('Espace professeurs'),
       ),
       body: Center(
         child: FutureBuilder<Album>(
@@ -30,14 +30,6 @@ class _ProfileTeacherState extends State<ProfileTeacher> {
           builder: (context, snapshot) {
             return Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                ),
-                Text("Bonjour",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 50,
-                        color: Colors.white)),
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                 ),

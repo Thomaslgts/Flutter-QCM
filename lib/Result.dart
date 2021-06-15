@@ -47,11 +47,6 @@ class _ResultFinalQuizzState extends State<ResultFinalQuizz> {
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                   ),
-                  Text(
-                    "Pour retourner sur un nouveau test cliquer sur Terminer",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                   ),
