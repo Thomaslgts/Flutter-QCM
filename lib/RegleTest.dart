@@ -59,7 +59,9 @@ class _RegleTestState extends State<RegleTest> {
                               '\n \n' +
                               " Chaque questions aura un temps imparti de 120 secondes " +
                               '\n \n' +
-                              "Une fois une question sélectionnée et le boutton suivant cliquer il est impossible de revenir en arrière",
+                              "Une fois une question sélectionnée et le boutton suivant cliquer il est impossible de revenir en arrière" +
+                              '\n \n' +
+                              " Chaque question vaut 2 points",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
