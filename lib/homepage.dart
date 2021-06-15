@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Question.dart';
 import 'Connexion_Teach_Account.dart';
 import 'package:projetuto/model/album.dart';
 import 'package:battery_plus/battery_plus.dart';
+import 'RegleTest.dart';
 
 TextEditingController codeController = new TextEditingController();
 
@@ -351,7 +351,7 @@ class _NamePageState extends State<NamePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Question(),
+                                  builder: (context) => RegleTest(),
                                 ),
                               )
                             }
