@@ -376,7 +376,7 @@ class _NamePageState extends State<NamePage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Veuillez recharcher votre smartphone"),
+          Text("Veuillez recharger votre smartphone"),
         ],
       ),
       actions: <Widget>[
