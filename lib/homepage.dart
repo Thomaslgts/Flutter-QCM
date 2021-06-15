@@ -100,9 +100,9 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onPressed: () => {
                         setState(() {
-                          test = codeController.text;
-                          futureAlbum = fetchAlbum();
-                          print(test);
+                          // test = codeController.text;
+                          // futureAlbum = fetchAlbum();
+                          // print(test);
                         }),
                         if (codeController.text == snapshot.data.codeSession)
                           {
