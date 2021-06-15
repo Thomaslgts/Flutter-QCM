@@ -49,7 +49,7 @@ class _TeacherAccountState extends State<TeacherAccount> {
                   children: [
                     Center(
                       child: Text(
-                        "Compte professeur",
+                        "Compte professeurs",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,

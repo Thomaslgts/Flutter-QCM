@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Question.dart';
 import 'Connexion_Teach_Account.dart';
 import 'package:projetuto/model/album.dart';
+import 'package:battery_plus/battery_plus.dart';
 
 TextEditingController codeController = new TextEditingController();
 
@@ -112,11 +113,12 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () => {
                               if (_formKey.currentState.validate())
                                 {
-                                  setState(() {
-                                    test = codeController.text;
-                                    futureAlbum = fetchAlbum();
-                                    print(test);
-                                  }),
+                                  setState(
+                                    () {
+                                      test = codeController.text;
+                                      futureAlbum = fetchAlbum();
+                                    },
+                                  ),
                                   if (codeController.text ==
                                       snapshot.data.codeSession)
                                     {
@@ -134,7 +136,28 @@ class _HomePageState extends State<HomePage> {
                                         builder: (BuildContext context) =>
                                             _buildPopupDialog(context),
                                       )
-                                    }
+                                    },
+                                  Future.delayed(
+                                    Duration(seconds: 5),
+                                    () {
+                                      // 5s over, navigate to a new page
+                                      if (codeController.text ==
+                                          snapshot.data.codeSession) {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NamePage(),
+                                          ),
+                                        );
+                                      } else {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              _buildPopupDialog(context),
+                                        );
+                                      }
+                                    },
+                                  ),
                                 },
                             },
                             child: const Text(
@@ -209,7 +232,7 @@ class NamePage extends StatefulWidget {
 class _NamePageState extends State<NamePage> {
   Future<Album> futureAlbum;
   final _formKey = GlobalKey<FormState>();
-
+  var battery = Battery();
   @override
   void initState() {
     super.initState();
@@ -321,6 +344,8 @@ class _NamePageState extends State<NamePage> {
                           onPrimary: Colors.black,
                         ),
                         onPressed: () async => {
+                          // print(await battery.batteryLevel),
+                          // ignore: unawaited_futures
                           if (_formKey.currentState.validate())
                             {
                               Navigator.push(
