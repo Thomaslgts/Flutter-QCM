@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:projetuto/homepage.dart';
 import 'Account_Teacher.dart';
+import 'dart:math';
 
 class ValidateQuestionFinal extends StatefulWidget {
   String request;
@@ -13,37 +15,52 @@ class ValidateQuestionFinal extends StatefulWidget {
 class _ValidateQuestionFinalState extends State<ValidateQuestionFinal> {
   String request;
   _ValidateQuestionFinalState(this.request);
+  Random random = new Random();
+  var number;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[900],
+      appBar: AppBar(
         backgroundColor: Colors.blue[900],
-        appBar: AppBar(
-          backgroundColor: Colors.blue[900],
-          title: Text('Création questionnaire'),
-        ),
-        body: Center(
-            child: Container(
-                margin: const EdgeInsets.only(
-                  top: 100,
+        title: Text('Création questionnaire'),
+      ),
+      body: Center(
+        child: Container(
+          margin: const EdgeInsets.only(
+            top: 100,
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+              ),
+              ElevatedButton(
+                child: Text("Valider le formulaire"),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  onPrimary: Colors.black,
                 ),
-                child: Column(children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                onPressed: () async => {
+                  number = random.nextInt(100),
+                  await showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        _buildPopupDialog(context),
                   ),
-                  ElevatedButton(
-                      child: Text("Valider le formulaire"),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                      ),
-                      onPressed: () => {postTest()})
-                ]))));
+                },
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
-  postTest() async {
+  postTest(number) async {
     final uri = 'https://serveur-flutter.herokuapp.com/api/quiz';
     var requestBody = {
-      'codeSession': "1708",
+      'codeSession': number.toString(),
       'etudiant': "etudiant",
       'session': request,
     };
@@ -58,6 +75,34 @@ class _ValidateQuestionFinalState extends State<ValidateQuestionFinal> {
       MaterialPageRoute(
         builder: (context) => ProfileTeacher(),
       ),
+    );
+  }
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: Text('Votre code de session est ' + number.toString()),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Veuillez le noté"),
+        ],
+      ),
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () async {
+            await postTest(number);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            );
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Fermer'),
+        ),
+      ],
     );
   }
 }

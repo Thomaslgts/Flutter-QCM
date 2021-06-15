@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                         )
                       },
                       child: const Text(
-                        "Compte professeur",
+                        "Espace professeurs",
                         style: TextStyle(fontSize: 20),
                       ),
                     ),
