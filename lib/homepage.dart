@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<Album> futureAlbum;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -69,63 +70,80 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: 300,
-                    padding: EdgeInsets.only(
-                      top: 50,
-                    ),
-                    child: TextFormField(
-                      controller: codeController,
-                      style: TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
-                        hintText: 'Entrez le code',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 60),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                      ),
-                      onPressed: () => {
-                        setState(() {
-                          test = codeController.text;
-                          futureAlbum = fetchAlbum();
-                          print(test);
-                        }),
-                        if (codeController.text == snapshot.data.codeSession)
-                          {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NamePage(),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          width: 300,
+                          padding: EdgeInsets.only(
+                            top: 50,
+                          ),
+                          child: TextFormField(
+                            controller: codeController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: const InputDecoration(
+                              hintText: 'Entrez le code',
+                              hintStyle: TextStyle(
+                                color: Colors.white,
                               ),
-                            )
-                          }
-                        else
-                          {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  _buildPopupDialog(context),
-                            )
-                          }
-                      },
-                      child: const Text(
-                        "Accéder à l'examen",
-                        style: TextStyle(fontSize: 20),
-                      ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Entrez un code de session';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 60),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              onPrimary: Colors.black,
+                            ),
+                            onPressed: () => {
+                              if (_formKey.currentState.validate())
+                                {
+                                  setState(() {
+                                    test = codeController.text;
+                                    futureAlbum = fetchAlbum();
+                                    print(test);
+                                  }),
+                                  if (codeController.text ==
+                                      snapshot.data.codeSession)
+                                    {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => NamePage(),
+                                        ),
+                                      )
+                                    }
+                                  else
+                                    {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            _buildPopupDialog(context),
+                                      )
+                                    }
+                                },
+                            },
+                            child: const Text(
+                              "Accéder à l'examen",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Container(

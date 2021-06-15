@@ -61,7 +61,7 @@ class _QuestionState extends State<Question> {
                           build: (_, double time) => Text(
                             time.toString(),
                             style: TextStyle(
-                              fontSize: 100,
+                              fontSize: 50,
                               color: Colors.white,
                             ),
                           ),
