@@ -42,7 +42,7 @@ class _ValidateQuestionFinalState extends State<ValidateQuestionFinal> {
                   onPrimary: Colors.black,
                 ),
                 onPressed: () async => {
-                  number = random.nextInt(100),
+                  number = random.nextInt(1000),
                   await showDialog(
                     context: context,
                     builder: (BuildContext context) =>
@@ -85,7 +85,7 @@ class _ValidateQuestionFinalState extends State<ValidateQuestionFinal> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Veuillez le noté"),
+          Text("Veuillez le noter"),
         ],
       ),
       actions: <Widget>[
