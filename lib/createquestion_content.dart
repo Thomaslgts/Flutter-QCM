@@ -70,7 +70,7 @@ class _CreatequestionState extends State<Createquestion> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                 ),
-                Text("Réponse",
+                Text("Réponses",
                     style: TextStyle(color: Colors.white, fontSize: 25)),
                 Text("Cocher pour séléctionner la bonne réponse.",
                     textAlign: TextAlign.center,
@@ -91,7 +91,7 @@ class _CreatequestionState extends State<Createquestion> {
                         });
                       }),
                   SizedBox(
-                    width: 250,
+                    width: 200,
                     height: 20,
                     child: new TextField(
                       controller: answeroneController,
@@ -115,7 +115,7 @@ class _CreatequestionState extends State<Createquestion> {
                         });
                       }),
                   SizedBox(
-                    width: 250,
+                    width: 200,
                     height: 20,
                     child: new TextField(
                       controller: answertowController,
@@ -139,7 +139,7 @@ class _CreatequestionState extends State<Createquestion> {
                         });
                       }),
                   SizedBox(
-                    width: 250,
+                    width: 200,
                     height: 20,
                     child: new TextField(
                       style: TextStyle(fontSize: 20),
@@ -163,7 +163,7 @@ class _CreatequestionState extends State<Createquestion> {
                         });
                       }),
                   SizedBox(
-                    width: 250,
+                    width: 200,
                     height: 20,
                     child: new TextField(
                       style: TextStyle(fontSize: 20),

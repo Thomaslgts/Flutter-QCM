@@ -35,8 +35,8 @@ class _ResultFinalQuizzState extends State<ResultFinalQuizz> {
                 padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               ),
               Text(
-                "Vous avez un score de ",
-                style: TextStyle(fontSize: 30, color: Colors.white),
+                "Voici votre résultat : ",
+                style: TextStyle(fontSize: 25, color: Colors.white),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(20, 20, 20, 20),

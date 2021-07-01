@@ -43,165 +43,167 @@ class _TeacherAccountState extends State<TeacherAccount> {
             builder: (context, snapshot) {
               return Form(
                 key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Text(
-                        "Compte professeurs",
-                        style: TextStyle(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          "Compte professeurs",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 300,
+                        margin: EdgeInsets.only(top: 90),
+                        padding: EdgeInsets.only(top: 20, bottom: 20),
+                        decoration: BoxDecoration(
                           color: Colors.white,
-                          fontSize: 30,
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 300,
-                      margin: EdgeInsets.only(top: 90),
-                      padding: EdgeInsets.only(top: 20, bottom: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        "Identifiant",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 300,
-                      padding: EdgeInsets.only(
-                        top: 30,
-                      ),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Entrez votre identifiant';
-                          }
-                          return null;
-                        },
-                        controller: logteacherController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(
-                          hintText: 'Entrez votre identifiant',
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
+                        child: Text(
+                          "Identifiant",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      width: 300,
-                      margin: EdgeInsets.only(top: 30),
-                      padding: EdgeInsets.only(top: 20, bottom: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        "Mot de passe",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
+                      Container(
+                        width: 300,
+                        padding: EdgeInsets.only(
+                          top: 30,
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 300,
-                      padding: EdgeInsets.only(
-                        top: 30,
-                      ),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Entrez votre mot de passe';
-                          }
-                          return null;
-                        },
-                        obscureText: true,
-                        controller: mdpteacherController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(
-                          hintText: 'Entrez votre mot de passe',
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 60),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          onPrimary: Colors.black,
-                        ),
-                        onPressed: () => {
-                          // if (_formKey.currentState.validate() &&
-                          //     mdpteacherController.text ==
-                          //         snapshot.data.codeSession)
-                          //   {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ProfileTeacher(),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Entrez votre identifiant';
+                            }
+                            return null;
+                          },
+                          controller: logteacherController,
+                          style: TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
+                            hintText: 'Entrez votre identifiant',
+                            hintStyle: TextStyle(
+                              color: Colors.white,
                             ),
-                          )
-                        },
-                        //   else
-                        //     {
-                        //       showDialog(
-                        //           context: context,
-                        //           builder: (BuildContext context) =>
-                        //               AlertDialog(
-                        //                 title: const Text(
-                        //                     'Oups petit problème ...'),
-                        //                 content: new Column(
-                        //                   mainAxisSize: MainAxisSize.min,
-                        //                   crossAxisAlignment:
-                        //                       CrossAxisAlignment.start,
-                        //                   children: <Widget>[
-                        //                     Text("Combinaison incorrect"),
-                        //                   ],
-                        //                 ),
-                        //                 actions: <Widget>[
-                        //                   new FlatButton(
-                        //                     onPressed: () {
-                        //                       Navigator.of(context).pop();
-                        //                     },
-                        //                     textColor:
-                        //                         Theme.of(context).primaryColor,
-                        //                     child: const Text('Fermer'),
-                        //                   ),
-                        //                 ],
-                        //               ))
-                        //     }
-                        // },
-                        child: const Text(
-                          "Connexion",
-                          style: TextStyle(fontSize: 20),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
                         ),
                       ),
-                    )
-                  ],
+                      Container(
+                        width: 300,
+                        margin: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 20, bottom: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          "Mot de passe",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 300,
+                        padding: EdgeInsets.only(
+                          top: 30,
+                        ),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Entrez votre mot de passe';
+                            }
+                            return null;
+                          },
+                          obscureText: true,
+                          controller: mdpteacherController,
+                          style: TextStyle(color: Colors.white),
+                          decoration: const InputDecoration(
+                            hintText: 'Entrez votre mot de passe',
+                            hintStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 60),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            onPrimary: Colors.black,
+                          ),
+                          onPressed: () => {
+                            // if (_formKey.currentState.validate() &&
+                            //     mdpteacherController.text ==
+                            //         snapshot.data.codeSession)
+                            //   {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProfileTeacher(),
+                              ),
+                            )
+                          },
+                          //   else
+                          //     {
+                          //       showDialog(
+                          //           context: context,
+                          //           builder: (BuildContext context) =>
+                          //               AlertDialog(
+                          //                 title: const Text(
+                          //                     'Oups petit problème ...'),
+                          //                 content: new Column(
+                          //                   mainAxisSize: MainAxisSize.min,
+                          //                   crossAxisAlignment:
+                          //                       CrossAxisAlignment.start,
+                          //                   children: <Widget>[
+                          //                     Text("Combinaison incorrect"),
+                          //                   ],
+                          //                 ),
+                          //                 actions: <Widget>[
+                          //                   new FlatButton(
+                          //                     onPressed: () {
+                          //                       Navigator.of(context).pop();
+                          //                     },
+                          //                     textColor:
+                          //                         Theme.of(context).primaryColor,
+                          //                     child: const Text('Fermer'),
+                          //                   ),
+                          //                 ],
+                          //               ))
+                          //     }
+                          // },
+                          child: const Text(
+                            "Connexion",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             },

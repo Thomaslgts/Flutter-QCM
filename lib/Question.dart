@@ -57,7 +57,7 @@ class _QuestionState extends State<Question> {
                     return Column(
                       children: [
                         Countdown(
-                          seconds: 120,
+                          seconds: 15,
                           build: (_, double time) => Text(
                             time.toString(),
                             style: TextStyle(

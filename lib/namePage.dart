@@ -18,7 +18,7 @@ class Information extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 30),
                   child: Text(
-                    "Prêt pour l’examen ? C’est partie !",
+                    "Prêt pour l’examen ? C’est parti !",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
